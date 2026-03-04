@@ -256,10 +256,10 @@ detección de inconsistencias semánticas
 
 soporte basado en ontologías para la ingeniería de requisitos.
 
-Autor
+#Autor
 
 Marc Marinho de Alcântara  
-Universidad Nacional de La Plata (UNLP)
 Magister en Ingeniería de Software - Fac. Ciencias Informáticas
+Universidad Nacional de La Plata (UNLP)
 
-
+/
