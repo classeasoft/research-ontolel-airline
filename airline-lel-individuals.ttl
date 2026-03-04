@@ -1,0 +1,635 @@
+@prefix : <http://ontologies.mgis.unlp.org/airline-lel#> .
+@prefix lel: <http://ontologies.mgis.unlp.org/lel-metamodel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://ontologies.mgis.unlp.org/airline-lel> a owl:Ontology ;
+  rdfs:label "Airline LEL Individuals"@en ;
+  rdfs:comment "Individuals generated from the LEL document (Línea Aérea)."@en .
+
+### Property declarations to ensure Protégé treats them as OWL assertions (not annotations)
+lel:hasNotion a owl:ObjectProperty .
+lel:hasImpact a owl:ObjectProperty .
+lel:hasType   a owl:ObjectProperty .
+lel:hasSymbol a owl:ObjectProperty .
+lel:referencesSymbol a owl:ObjectProperty .
+
+lel:symbolName a owl:DatatypeProperty .
+lel:text       a owl:DatatypeProperty .
+
+
+
+:subjectType a lel:SubjectType .
+:objectType a lel:ObjectType .
+:stateType a lel:StateType .
+:verbType a lel:VerbType .
+
+:AirlineLELModel a lel:LELModel .
+
+:Pasajero_LEL a lel:LELSymbol ;
+  lel:symbolName "Pasajero"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :Pasajero_Notion ;
+  lel:hasImpact :Pasajero_Impact .
+
+:AirlineLELModel lel:hasSymbol :Pasajero_LEL .
+
+:Pasajero_Notion a lel:Notion ;
+  lel:text "Persona física que ha adquirido un Billete Aéreo, obteniendo el derecho contractual a ser transportada en una Aeronave entre Aeropuertos, de acuerdo con las condiciones definidas por la Compañía Aérea y la Clase de Tarifa."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :BilleteAereo_LEL, :ClaseDeTarifa_LEL, :CompaniaAerea_LEL .
+
+:Pasajero_Impact a lel:Impact ;
+  lel:text "Adquisición del Billete Aéreo y Pago de la Tarifa Aérea. Elección de la Clase de Tarifa. Realización del proceso de Check-in. Embarque en el Vuelo. Ocupación de un Asiento asignado en la Aeronave. Gestión y Entrega de Equipaje al Miembro de Operación."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Asiento_LEL, :BilleteAereo_LEL, :ClaseDeTarifa_LEL, :Equipaje_LEL, :MiembroDeOperacion_LEL, :TarifaAerea_LEL, :Vuelo_LEL .
+
+:PasajeroFrecuente_LEL a lel:LELSymbol ;
+  lel:symbolName "Pasajero Frecuente"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :PasajeroFrecuente_Notion ;
+  lel:hasImpact :PasajeroFrecuente_Impact .
+
+:AirlineLELModel lel:hasSymbol :PasajeroFrecuente_LEL .
+
+:PasajeroFrecuente_Notion a lel:Notion ;
+  lel:text "Pasajero que se ha adherido voluntariamente al Programa de Fidelidad de una Compañía Aérea, siendo un cliente recurrente que busca obtener beneficios por su lealtad."@es
+  ;
+  lel:referencesSymbol :CompaniaAerea_LEL, :Pasajero_LEL, :ProgramaDeFidelidad_LEL .
+
+:PasajeroFrecuente_Impact a lel:Impact ;
+  lel:text "Acumulación de puntos o millas según la Clase de Tarifa y la distancia del Vuelo. Recepción de beneficios como prioridad en el Check-in, Embarque preferencial o acceso a salas VIP. Posibilidad de canjear puntos por nuevos Billetes Aéreos o upgrades."@es
+  ;
+  lel:referencesSymbol :ClaseDeTarifa_LEL, :Vuelo_LEL .
+
+:MiembroDeTripulacion_LEL a lel:LELSymbol ;
+  lel:symbolName "Miembro de Tripulación"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :MiembroDeTripulacion_Notion ;
+  lel:hasImpact :MiembroDeTripulacion_Impact .
+
+:AirlineLELModel lel:hasSymbol :MiembroDeTripulacion_LEL .
+
+:MiembroDeTripulacion_Notion a lel:Notion ;
+  lel:text "Profesional cualificado (Piloto, Copiloto, Auxiliar de Vuelo) con responsabilidad principal en la operación técnica de la Aeronave y/o la seguridad y el servicio a bordo de los Pasajeros durante el Vuelo."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Vuelo_LEL .
+
+:MiembroDeTripulacion_Impact a lel:Impact ;
+  lel:text "Operación técnica y segura de la Aeronave. Prestación directa de servicios y atención al Pasajero. Utilización y verificación del Manifiesto de Vuelo para la correcta ejecución del servicio. Reporte de fallas operativas o técnicas al Miembro de Mantenimiento."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :ManifiestoDeVuelo_LEL, :MiembroDeMantenimiento_LEL, :Pasajero_LEL, :Vuelo_LEL .
+
+:MiembroDeOperacion_LEL a lel:LELSymbol ;
+  lel:symbolName "Miembro de Operación"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :MiembroDeOperacion_Notion ;
+  lel:hasImpact :MiembroDeOperacion_Impact .
+
+:AirlineLELModel lel:hasSymbol :MiembroDeOperacion_LEL .
+
+:MiembroDeOperacion_Notion a lel:Notion ;
+  lel:text "Empleado en tierra (Agente de Handling, Agente de puerta) responsable de la gestión de las actividades de apoyo en el Aeropuerto que garantizan la salida y llegada de los Vuelos."@es
+  ;
+  lel:referencesSymbol :Aeropuerto_LEL .
+
+:MiembroDeOperacion_Impact a lel:Impact ;
+  lel:text "Ejecución del proceso de Check-in y validación del Billete Aéreo. Control y gestión final del Embarque de los Pasajeros. Gestión, pesaje y manipulación de Equipaje y Carga. Consolidación final del Manifiesto de Vuelo y coordinación con la Tripulación."@es
+  ;
+  lel:referencesSymbol :BilleteAereo_LEL, :Carga_LEL, :Equipaje_LEL, :ManifiestoDeVuelo_LEL, :Vuelo_LEL .
+
+:MiembroDeMantenimiento_LEL a lel:LELSymbol ;
+  lel:symbolName "Miembro de Mantenimiento"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :MiembroDeMantenimiento_Notion ;
+  lel:hasImpact :MiembroDeMantenimiento_Impact .
+
+:AirlineLELModel lel:hasSymbol :MiembroDeMantenimiento_LEL .
+
+:MiembroDeMantenimiento_Notion a lel:Notion ;
+  lel:text "Técnico aeronáutico certificado, responsable de la supervisión, diagnóstico, reparación y certificación de la integridad física y operativa de la Aeronave para asegurar su aeronavegabilidad."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL .
+
+:MiembroDeMantenimiento_Impact a lel:Impact ;
+  lel:text "Realización del Mantenimiento preventivo y correctivo en la Aeronave. Actualización del Estado de la Aeronave en los registros técnicos. Liberación y certificación de la Aeronave para la operación del próximo Vuelo, garantizando el cumplimiento de las normas."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :EstadoDeLaAeronave_LEL, :Vuelo_LEL .
+
+:CompaniaAerea_LEL a lel:LELSymbol ;
+  lel:symbolName "Compañía Aérea"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :CompaniaAerea_Notion ;
+  lel:hasImpact :CompaniaAerea_Impact .
+
+:AirlineLELModel lel:hasSymbol :CompaniaAerea_LEL .
+
+:CompaniaAerea_Notion a lel:Notion ;
+  lel:text "Organización empresarial que opera comercial y operativamente Vuelos para el transporte de Pasajeros y/o Carga, sujetándose a las regulaciones nacionales e internacionales."@es
+  ;
+  lel:referencesSymbol :Carga_LEL .
+
+:CompaniaAerea_Impact a lel:Impact ;
+  lel:text "Definición de Itinerarios, frecuencias de Vuelo y gestión de flota. Definición y administración de Clases de Tarifa y Tarifas Aéreas. Emisión y gestión de Billetes Aéreos. Mantenimiento y gestión del Programa de Fidelidad."@es
+  ;
+  lel:referencesSymbol :ProgramaDeFidelidad_LEL, :Vuelo_LEL .
+
+:AutoridadAeroportuaria_LEL a lel:LELSymbol ;
+  lel:symbolName "Autoridad Aeroportuaria"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :AutoridadAeroportuaria_Notion ;
+  lel:hasImpact :AutoridadAeroportuaria_Impact .
+
+:AirlineLELModel lel:hasSymbol :AutoridadAeroportuaria_LEL .
+
+:AutoridadAeroportuaria_Notion a lel:Notion ;
+  lel:text "Entidad responsable de la administración, infraestructura, seguridad y operación general de un Aeropuerto."@es
+  ;
+  lel:referencesSymbol :Aeropuerto_LEL .
+
+:AutoridadAeroportuaria_Impact a lel:Impact ;
+  lel:text "Autorización y coordinación de los aterrizajes y despegues (tráfico aéreo local). Control y Mantenimiento de la infraestructura aeroportuaria (pistas, terminales). Regulación de las tasas aeroportuarias."@es
+ .
+
+:AutoridadAeronautica_LEL a lel:LELSymbol ;
+  lel:symbolName "Autoridad Aeronáutica"^^xsd:string ;
+  lel:hasType :subjectType ;
+  lel:hasNotion :AutoridadAeronautica_Notion ;
+  lel:hasImpact :AutoridadAeronautica_Impact .
+
+:AirlineLELModel lel:hasSymbol :AutoridadAeronautica_LEL .
+
+:AutoridadAeronautica_Notion a lel:Notion ;
+  lel:text "Órgano regulador del Estado con potestad legal para definir, fiscalizar y hacer cumplir las normas de seguridad operacional y civil de la aviación."@es
+ .
+
+:AutoridadAeronautica_Impact a lel:Impact ;
+  lel:text "Definición y promulgación de normas de seguridad, operación y certificación. Certificación de Aeronaves, Tripulación y personal de Mantenimiento. Supervisión de la Compañía Aérea y el Aeropuerto para el cumplimiento normativo."@es
+  ;
+  lel:referencesSymbol :Aeropuerto_LEL, :CompaniaAerea_LEL .
+
+:Aeronave_LEL a lel:LELSymbol ;
+  lel:symbolName "Aeronave"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Aeronave_Notion ;
+  lel:hasImpact :Aeronave_Impact .
+
+:AirlineLELModel lel:hasSymbol :Aeronave_LEL .
+
+:Aeronave_Notion a lel:Notion ;
+  lel:text "Vehículo aéreo complejo, registrado y certificado, diseñado y utilizado para el transporte de Pasajeros, Equipaje y Carga entre dos o más Aeropuertos. Tipos de Aeronave: Avión comercial de fuselaje estrecho (narrow-body): Usado para rutas cortas/medias. Avión comercial de fuselaje ancho (wide-body): Usado para rutas largas/intercontinentales."@es
+  ;
+  lel:referencesSymbol :Carga_LEL, :Equipaje_LEL .
+
+:Aeronave_Impact a lel:Impact ;
+  lel:text "Ejecución física de los Vuelos según el Itinerario. Es el objeto operado por el Miembro de Tripulación y mantenido por el Miembro de Mantenimiento. Su Estado de la Aeronave es crítico para la operación."@es
+  ;
+  lel:referencesSymbol :EstadoDeLaAeronave_LEL, :Itinerario_LEL, :MiembroDeMantenimiento_LEL, :MiembroDeTripulacion_LEL .
+
+:Vuelo_LEL a lel:LELSymbol ;
+  lel:symbolName "Vuelo"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Vuelo_Notion ;
+  lel:hasImpact :Vuelo_Impact .
+
+:AirlineLELModel lel:hasSymbol :Vuelo_LEL .
+
+:Vuelo_Notion a lel:Notion ;
+  lel:text "Instancia singular y programada de la operación de transporte aéreo, realizada por una Aeronave específica, cubriendo un Itinerario predefinido entre un origen y un destino."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Itinerario_LEL .
+
+:Vuelo_Impact a lel:Impact ;
+  lel:text "Transporta Pasajeros, Equipaje y Carga. Se rige por un Itinerario. Genera el Manifiesto de Vuelo con la información de los participantes. Su Estado del Vuelo es comunicado a los Pasajeros."@es
+  ;
+  lel:referencesSymbol :Carga_LEL, :Equipaje_LEL, :EstadoDelVuelo_LEL, :Itinerario_LEL, :ManifiestoDeVuelo_LEL .
+
+:Itinerario_LEL a lel:LELSymbol ;
+  lel:symbolName "Itinerario"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Itinerario_Notion ;
+  lel:hasImpact :Itinerario_Impact .
+
+:AirlineLELModel lel:hasSymbol :Itinerario_LEL .
+
+:Itinerario_Notion a lel:Notion ;
+  lel:text "Conjunto de datos logísticos y temporales que describe de manera unívoca la trayectoria y planificación de un Vuelo (origen, destino, escalas, fechas y horas programadas). Tipos de Itinerario: Directo: Sin escalas. Con escala: Con una o más paradas intermedias sin cambio de número de Vuelo. Con conexión: Requiere cambio de Aeronave y/o número de Vuelo."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Vuelo_LEL .
+
+:Itinerario_Impact a lel:Impact ;
+  lel:text "Es definido y publicado por la Compañía Aérea. Se vincula directamente al Billete Aéreo como la promesa de transporte."@es
+  ;
+  lel:referencesSymbol :BilleteAereo_LEL, :CompaniaAerea_LEL .
+
+:ManifiestoDeVuelo_LEL a lel:LELSymbol ;
+  lel:symbolName "Manifiesto de Vuelo"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ManifiestoDeVuelo_Notion ;
+  lel:hasImpact :ManifiestoDeVuelo_Impact .
+
+:AirlineLELModel lel:hasSymbol :ManifiestoDeVuelo_LEL .
+
+:ManifiestoDeVuelo_Notion a lel:Notion ;
+  lel:text "Documento oficial y obligatorio que consolida toda la información operacional crítica de un Vuelo, sirviendo como registro de la carga y las personas a bordo. Contenido: Lista de Pasajeros y Miembros de Tripulación. Detalle del Equipaje y la Carga. Información de pesos y balances."@es
+  ;
+  lel:referencesSymbol :Carga_LEL, :Equipaje_LEL, :Vuelo_LEL .
+
+:ManifiestoDeVuelo_Impact a lel:Impact ;
+  lel:text "Es un documento de control utilizado por el Miembro de Operación y por la Tripulación. Es actualizado en el Embarque final."@es
+  ;
+  lel:referencesSymbol :MiembroDeOperacion_LEL .
+
+:BilleteAereo_LEL a lel:LELSymbol ;
+  lel:symbolName "Billete Aéreo"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :BilleteAereo_Notion ;
+  lel:hasImpact :BilleteAereo_Impact .
+
+:AirlineLELModel lel:hasSymbol :BilleteAereo_LEL .
+
+:BilleteAereo_Notion a lel:Notion ;
+  lel:text "Contrato de transporte emitido por la Compañía Aérea que garantiza al Pasajero el derecho a ocupar un Asiento en un Vuelo, sujeto a las reglas de la Clase de Tarifa adquirida. Contenido: Nombre del Pasajero e Itinerario asociado. Código de Clase de Tarifa y Tarifa Aérea pagada. Estado del Billete Aéreo."@es
+  ;
+  lel:referencesSymbol :Asiento_LEL, :ClaseDeTarifa_LEL, :CompaniaAerea_LEL, :EstadoDelBilleteAereo_LEL, :Itinerario_LEL, :Pasajero_LEL, :TarifaAerea_LEL, :Vuelo_LEL .
+
+:BilleteAereo_Impact a lel:Impact ;
+  lel:text "Es adquirido por el Pasajero. Debe ser validado durante el Check-in. Su Estado del Billete Aéreo determina la capacidad de uso."@es
+  ;
+  lel:referencesSymbol :EstadoDelBilleteAereo_LEL, :Pasajero_LEL .
+
+:TarifaAerea_LEL a lel:LELSymbol ;
+  lel:symbolName "Tarifa Aérea"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :TarifaAerea_Notion ;
+  lel:hasImpact :TarifaAerea_Impact .
+
+:AirlineLELModel lel:hasSymbol :TarifaAerea_LEL .
+
+:TarifaAerea_Notion a lel:Notion ;
+  lel:text "Valor monetario total, incluyendo impuestos y tasas, asociado al Billete Aéreo, pagado por el Pasajero a cambio del servicio de transporte. Componentes: Tarifa Base, Impuestos y Tasas, y Recargos por Combustible."@es
+  ;
+  lel:referencesSymbol :BilleteAereo_LEL, :Pasajero_LEL .
+
+:TarifaAerea_Impact a lel:Impact ;
+  lel:text "Es el ingreso principal de la Compañía Aérea. Su valor está directamente correlacionado con la Clase de Tarifa."@es
+  ;
+  lel:referencesSymbol :ClaseDeTarifa_LEL, :CompaniaAerea_LEL .
+
+:ClaseDeTarifa_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifa_Notion ;
+  lel:hasImpact :ClaseDeTarifa_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifa_LEL .
+
+:ClaseDeTarifa_Notion a lel:Notion ;
+  lel:text "Categoría comercial definida por la Compañía Aérea que clasifica el Billete Aéreo y establece un conjunto de reglas, precios y beneficios asociados al servicio. Tipos Generales: Económica, Económica Premium, Ejecutiva, Primera Clase."@es
+  ;
+  lel:referencesSymbol :BilleteAereo_LEL, :CompaniaAerea_LEL .
+
+:ClaseDeTarifa_Impact a lel:Impact ;
+  lel:text "Define las reglas comerciales (cambios, reembolsos, penalizaciones). Determina la Tarifa Aérea. Establece los beneficios de Equipaje, Asiento y servicios a bordo."@es
+  ;
+  lel:referencesSymbol :Asiento_LEL, :Equipaje_LEL, :TarifaAerea_LEL .
+
+:ClaseDeTarifaEconomicaBasicaEO_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa Económica Básica (E/O)"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifaEconomicaBasicaEO_Notion ;
+  lel:hasImpact :ClaseDeTarifaEconomicaBasicaEO_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifaEconomicaBasicaEO_LEL .
+
+:ClaseDeTarifaEconomicaBasicaEO_Notion a lel:Notion ;
+  lel:text "La categoría más restrictiva y de menor costo ofrecida por la Compañía Aérea."@es
+  ;
+  lel:referencesSymbol :CompaniaAerea_LEL .
+
+:ClaseDeTarifaEconomicaBasicaEO_Impact a lel:Impact ;
+  lel:text "Define una Tarifa Aérea significativamente reducida. Restringe o prohíbe completamente la alteración y el reembolso del Billete Aéreo. Limita la franquicia de Equipaje o lo excluye."@es
+  ;
+  lel:referencesSymbol :BilleteAereo_LEL, :Equipaje_LEL, :TarifaAerea_LEL .
+
+:ClaseDeTarifaEconomicaYBMHQLTVXN_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa Económica (Y, B, M, H, Q, L, T, V, X, N)"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifaEconomicaYBMHQLTVXN_Notion ;
+  lel:hasImpact :ClaseDeTarifaEconomicaYBMHQLTVXN_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifaEconomicaYBMHQLTVXN_LEL .
+
+:ClaseDeTarifaEconomicaYBMHQLTVXN_Notion a lel:Notion ;
+  lel:text "La categoría estándar y más común de transporte."@es
+ .
+
+:ClaseDeTarifaEconomicaYBMHQLTVXN_Impact a lel:Impact ;
+  lel:text "Define una Tarifa Aérea estándar. Permite alteraciones y reembolsos bajo reglas comerciales y pago de penalidades. Franquicia de Equipaje básica o con opciones de compra."@es
+  ;
+  lel:referencesSymbol :Equipaje_LEL, :TarifaAerea_LEL .
+
+:ClaseDeTarifaEconomicaPremiumWP_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa Económica Premium (W/P)"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifaEconomicaPremiumWP_Notion ;
+  lel:hasImpact :ClaseDeTarifaEconomicaPremiumWP_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifaEconomicaPremiumWP_LEL .
+
+:ClaseDeTarifaEconomicaPremiumWP_Notion a lel:Notion ;
+  lel:text "Una categoría intermedia entre Económica y Ejecutiva, que ofrece mayor comodidad y servicios."@es
+ .
+
+:ClaseDeTarifaEconomicaPremiumWP_Impact a lel:Impact ;
+  lel:text "Define una Tarifa Aérea superior a la Económica. Ofrece mayor franquicia de Equipaje y Asientos con más espacio. Mejores reglas comerciales que la Económica."@es
+  ;
+  lel:referencesSymbol :Equipaje_LEL, :TarifaAerea_LEL .
+
+:ClaseDeTarifaEjecutivaJCDIZ_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa Ejecutiva (J, C, D, I, Z)"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifaEjecutivaJCDIZ_Notion ;
+  lel:hasImpact :ClaseDeTarifaEjecutivaJCDIZ_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifaEjecutivaJCDIZ_LEL .
+
+:ClaseDeTarifaEjecutivaJCDIZ_Notion a lel:Notion ;
+  lel:text "Categoría de alto valor que ofrece servicios premium, comodidad superior y mayor nivel de atención."@es
+ .
+
+:ClaseDeTarifaEjecutivaJCDIZ_Impact a lel:Impact ;
+  lel:text "Define una Tarifa Aérea elevada. Garantiza prioridad en el Check-in, Embarque y manejo de Equipaje. Incluye acceso a salas VIP."@es
+  ;
+  lel:referencesSymbol :Equipaje_LEL, :TarifaAerea_LEL .
+
+:ClaseDeTarifaPrimeraClaseFA_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa Primera Clase (F/A)"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifaPrimeraClaseFA_Notion ;
+  lel:hasImpact :ClaseDeTarifaPrimeraClaseFA_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifaPrimeraClaseFA_LEL .
+
+:ClaseDeTarifaPrimeraClaseFA_Notion a lel:Notion ;
+  lel:text "La categoría más exclusiva y de mayor valor, con servicios totalmente personalizados y cabinas diferenciadas."@es
+ .
+
+:ClaseDeTarifaPrimeraClaseFA_Impact a lel:Impact ;
+  lel:text "Define la Tarifa Aérea máxima. Ofrece servicios exclusivos en tierra y a bordo. Máxima privacidad y comodidad de Asiento."@es
+  ;
+  lel:referencesSymbol :Asiento_LEL, :TarifaAerea_LEL .
+
+:ClaseDeTarifaPromocionalRSG_LEL a lel:LELSymbol ;
+  lel:symbolName "Clase de Tarifa Promocional (R, S, G)"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ClaseDeTarifaPromocionalRSG_Notion ;
+  lel:hasImpact :ClaseDeTarifaPromocionalRSG_Impact .
+
+:AirlineLELModel lel:hasSymbol :ClaseDeTarifaPromocionalRSG_LEL .
+
+:ClaseDeTarifaPromocionalRSG_Notion a lel:Notion ;
+  lel:text "Tarifa temporalmente reducida por motivos de marketing o para optimización de ocupación del Vuelo."@es
+  ;
+  lel:referencesSymbol :Vuelo_LEL .
+
+:ClaseDeTarifaPromocionalRSG_Impact a lel:Impact ;
+  lel:text "Define una Tarifa Aérea muy reducida. Presenta las restricciones comerciales más fuertes, a menudo sin posibilidad de cambio o reembolso. Puede limitar la acumulación de puntos en el Programa de Fidelidad."@es
+  ;
+  lel:referencesSymbol :ProgramaDeFidelidad_LEL, :TarifaAerea_LEL .
+
+:Asiento_LEL a lel:LELSymbol ;
+  lel:symbolName "Asiento"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Asiento_Notion ;
+  lel:hasImpact :Asiento_Impact .
+
+:AirlineLELModel lel:hasSymbol :Asiento_LEL .
+
+:Asiento_Notion a lel:Notion ;
+  lel:text "Espacio físico individual y numerado dentro de la cabina de la Aeronave, destinado a ser ocupado por un Pasajero durante el Vuelo. Tipos de Asiento: Ventana, Pasillo, Central. Asiento de salida de emergencia (Exit Row) con espacio extra. Asiento de Primera Clase/Ejecutiva (que se convierte en cama)."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Pasajero_LEL, :Vuelo_LEL .
+
+:Asiento_Impact a lel:Impact ;
+  lel:text "Es atribuido al Pasajero durante el Check-in o en el proceso de reserva. Su ubicación puede depender de la Clase de Tarifa y el estatus de Pasajero Frecuente."@es
+  ;
+  lel:referencesSymbol :ClaseDeTarifa_LEL, :Pasajero_LEL, :PasajeroFrecuente_LEL .
+
+:Equipaje_LEL a lel:LELSymbol ;
+  lel:symbolName "Equipaje"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Equipaje_Notion ;
+  lel:hasImpact :Equipaje_Impact .
+
+:AirlineLELModel lel:hasSymbol :Equipaje_LEL .
+
+:Equipaje_Notion a lel:Notion ;
+  lel:text "Conjunto de pertenencias de un Pasajero transportadas por la Aeronave en la bodega (Equipaje de bodega) o en la cabina (Equipaje de mano). Clasificación: Equipaje de mano (carry-on). Equipaje de bodega (checked baggage)."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Pasajero_LEL .
+
+:Equipaje_Impact a lel:Impact ;
+  lel:text "Su volumen y peso están sujetos a las reglas de franquicia de la Clase de Tarifa. Es entregado y gestionado por el Miembro de Operación. Es listado en el Manifiesto de Vuelo."@es
+  ;
+  lel:referencesSymbol :ClaseDeTarifa_LEL, :ManifiestoDeVuelo_LEL, :MiembroDeOperacion_LEL, :Vuelo_LEL .
+
+:Carga_LEL a lel:LELSymbol ;
+  lel:symbolName "Carga"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Carga_Notion ;
+  lel:hasImpact :Carga_Impact .
+
+:AirlineLELModel lel:hasSymbol :Carga_LEL .
+
+:Carga_Notion a lel:Notion ;
+  lel:text "Bienes o mercancías (excluyendo el Equipaje de los Pasajeros) transportados en la bodega de la Aeronave, sujetos a un contrato de transporte aéreo de carga. Tipos de Carga: Carga general, carga perecedera, carga peligrosa, correo."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Equipaje_LEL .
+
+:Carga_Impact a lel:Impact ;
+  lel:text "Es manipulada y verificada por el Miembro de Operación. Su presencia y características son registradas en el Manifiesto de Vuelo. Genera un ingreso adicional para la Compañía Aérea."@es
+  ;
+  lel:referencesSymbol :CompaniaAerea_LEL, :ManifiestoDeVuelo_LEL, :MiembroDeOperacion_LEL, :Vuelo_LEL .
+
+:Aeropuerto_LEL a lel:LELSymbol ;
+  lel:symbolName "Aeropuerto"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :Aeropuerto_Notion ;
+  lel:hasImpact :Aeropuerto_Impact .
+
+:AirlineLELModel lel:hasSymbol :Aeropuerto_LEL .
+
+:Aeropuerto_Notion a lel:Notion ;
+  lel:text "Infraestructura terrestre compleja y regulada que sirve como punto de llegada, partida y conexión para las Aeronaves y el flujo de Pasajeros y Carga."@es
+  ;
+  lel:referencesSymbol :Carga_LEL .
+
+:Aeropuerto_Impact a lel:Impact ;
+  lel:text "Lugar físico del Embarque y Desembarque de Pasajeros. El tráfico aéreo y terrestre es regulado por la Autoridad Aeroportuaria."@es
+  ;
+  lel:referencesSymbol :AutoridadAeroportuaria_LEL .
+
+:ProgramaDeFidelidad_LEL a lel:LELSymbol ;
+  lel:symbolName "Programa de Fidelidad"^^xsd:string ;
+  lel:hasType :objectType ;
+  lel:hasNotion :ProgramaDeFidelidad_Notion ;
+  lel:hasImpact :ProgramaDeFidelidad_Impact .
+
+:AirlineLELModel lel:hasSymbol :ProgramaDeFidelidad_LEL .
+
+:ProgramaDeFidelidad_Notion a lel:Notion ;
+  lel:text "Estrategia de marketing y retención de clientes mantenida por la Compañía Aérea, que recompensa al Pasajero Frecuente por su lealtad y volumen de Vuelos. Elementos clave: Acumulación de puntos/millas por Vuelo. Canje de puntos para Billetes o upgrades. Niveles de Estatus (Ej. Plata, Oro) que otorgan beneficios escalonados."@es
+  ;
+  lel:referencesSymbol :CompaniaAerea_LEL, :Pasajero_LEL, :PasajeroFrecuente_LEL, :Vuelo_LEL .
+
+:ProgramaDeFidelidad_Impact a lel:Impact ;
+  lel:text "Registra los puntos y beneficios acumulados del Pasajero Frecuente. Incentiva la compra recurrente de Billetes Aéreos."@es
+  ;
+  lel:referencesSymbol :Pasajero_LEL, :PasajeroFrecuente_LEL .
+
+:EstadoDelBilleteAereo_LEL a lel:LELSymbol ;
+  lel:symbolName "Estado del Billete Aéreo"^^xsd:string ;
+  lel:hasType :stateType ;
+  lel:hasNotion :EstadoDelBilleteAereo_Notion ;
+  lel:hasImpact :EstadoDelBilleteAereo_Impact .
+
+:AirlineLELModel lel:hasSymbol :EstadoDelBilleteAereo_LEL .
+
+:EstadoDelBilleteAereo_Notion a lel:Notion ;
+  lel:text "Condición administrativa y contractual actual del Billete Aéreo, que define su validez y capacidad de uso por el Pasajero. Posibles Estados: Emitido/Confirmado: Válido y listo para el Vuelo. Pendiente de Pago: Retenido temporalmente, no confirmado. Anulado/Cancelado: Ha perdido su validez. Reembolsado: El valor ha sido devuelto al Pasajero. Utilizado (Flown): El Pasajero ha completado el Vuelo."@es
+  ;
+  lel:referencesSymbol :BilleteAereo_LEL, :Pasajero_LEL, :Vuelo_LEL .
+
+:EstadoDelBilleteAereo_Impact a lel:Impact ;
+  lel:text "Es consultado por el Miembro de Operación durante el Check-in y Embarque. Determina si se puede validar el derecho de transporte del Pasajero."@es
+  ;
+  lel:referencesSymbol :MiembroDeOperacion_LEL, :Pasajero_LEL .
+
+:EstadoDelVuelo_LEL a lel:LELSymbol ;
+  lel:symbolName "Estado del Vuelo"^^xsd:string ;
+  lel:hasType :stateType ;
+  lel:hasNotion :EstadoDelVuelo_Notion ;
+  lel:hasImpact :EstadoDelVuelo_Impact .
+
+:AirlineLELModel lel:hasSymbol :EstadoDelVuelo_LEL .
+
+:EstadoDelVuelo_Notion a lel:Notion ;
+  lel:text "Situación operativa en tiempo real de un Vuelo programado, comunicada a los Pasajeros y a la Tripulación para la toma de decisiones logísticas. Posibles Estados: Programado/Confirmado: En la planificación inicial. En Horario: Se espera que salga a tiempo. Retrasado: El horario de salida o llegada ha sido modificado. Cancelado: El Vuelo no se realizará. Embarcando: Pasajeros entrando a la Aeronave. Despegado/Aterrizado: El Vuelo está en el aire o ha llegado a su destino."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Vuelo_LEL .
+
+:EstadoDelVuelo_Impact a lel:Impact ;
+  lel:text "Impacta la planificación y la logística del Pasajero y del Miembro de Tripulación. Determina las acciones del Miembro de Operación en el Aeropuerto (asignación de puertas de Embarque, handling)."@es
+  ;
+  lel:referencesSymbol :Aeropuerto_LEL, :MiembroDeOperacion_LEL, :MiembroDeTripulacion_LEL, :Pasajero_LEL .
+
+:EstadoDeLaAeronave_LEL a lel:LELSymbol ;
+  lel:symbolName "Estado de la Aeronave"^^xsd:string ;
+  lel:hasType :stateType ;
+  lel:hasNotion :EstadoDeLaAeronave_Notion ;
+  lel:hasImpact :EstadoDeLaAeronave_Impact .
+
+:AirlineLELModel lel:hasSymbol :EstadoDeLaAeronave_LEL .
+
+:EstadoDeLaAeronave_Notion a lel:Notion ;
+  lel:text "Condición técnica, documental y de aeronavegabilidad que describe la aptitud de la Aeronave para la operación segura de Vuelos. Este estado es dinámico, gestionado por el Miembro de Mantenimiento y auditado por la Autoridad Aeronáutica. Posibles Estados: Operacional (OP): La Aeronave está totalmente apta para el servicio y cumple con todos los requisitos. Aeronave en Tierra (AOG - Aircraft on Ground): La Aeronave no está apta para el Vuelo debido a una falla técnica no resuelta. Mantenimiento Programado (MP): La Aeronave está inmovilizada para una inspección planificada. Aviso de Retraso (MEL/CDL Deferral): La Aeronave tiene una falla menor que permite el Vuelo bajo condiciones y restricciones específicas."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :AutoridadAeronautica_LEL, :MiembroDeMantenimiento_LEL, :Vuelo_LEL .
+
+:EstadoDeLaAeronave_Impact a lel:Impact ;
+  lel:text "Determina la disponibilidad de la Aeronave para ser incluida en el Manifiesto de Vuelo y operar un Itinerario. El Miembro de Mantenimiento es responsable de actualizar y certificar el estado después de cualquier intervención. Influye directamente en la puntualidad, cancelación y reprogramación de los Vuelos."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Itinerario_LEL, :ManifiestoDeVuelo_LEL, :MiembroDeMantenimiento_LEL, :Vuelo_LEL .
+
+:RealizarReservaReserva_LEL a lel:LELSymbol ;
+  lel:symbolName "Realizar Reserva (Reserva)"^^xsd:string ;
+  lel:hasType :verbType ;
+  lel:hasNotion :RealizarReservaReserva_Notion ;
+  lel:hasImpact :RealizarReservaReserva_Impact .
+
+:AirlineLELModel lel:hasSymbol :RealizarReservaReserva_LEL .
+
+:RealizarReservaReserva_Notion a lel:Notion ;
+  lel:text "Proceso por el cual el Pasajero solicita y obtiene la confirmación de la intención de compra de un Asiento y un Itinerario, creando un registro de reserva o PNR (Passenger Name Record), que precede a la emisión del Billete Aéreo."@es
+  ;
+  lel:referencesSymbol :Asiento_LEL, :BilleteAereo_LEL, :Itinerario_LEL, :Pasajero_LEL .
+
+:RealizarReservaReserva_Impact a lel:Impact ;
+  lel:text "Crea un registro de la intención de viaje. Define el Asiento y la Clase de Tarifa de forma provisional. Genera un plazo para la emisión y pago final del Billete Aéreo."@es
+  ;
+  lel:referencesSymbol :Asiento_LEL, :BilleteAereo_LEL, :ClaseDeTarifa_LEL .
+
+:EmitirTicketDeEmbarqueTarjetaDeEmbarque_LEL a lel:LELSymbol ;
+  lel:symbolName "Emitir Ticket de Embarque (Tarjeta de Embarque)"^^xsd:string ;
+  lel:hasType :verbType ;
+  lel:hasNotion :EmitirTicketDeEmbarqueTarjetaDeEmbarque_Notion ;
+  lel:hasImpact :EmitirTicketDeEmbarqueTarjetaDeEmbarque_Impact .
+
+:AirlineLELModel lel:hasSymbol :EmitirTicketDeEmbarqueTarjetaDeEmbarque_LEL .
+
+:EmitirTicketDeEmbarqueTarjetaDeEmbarque_Notion a lel:Notion ;
+  lel:text "Proceso posterior al Check-in en el que se genera el documento (físico o digital) que permite al Pasajero acceder a la zona de Embarque y, posteriormente, a la Aeronave."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Pasajero_LEL .
+
+:EmitirTicketDeEmbarqueTarjetaDeEmbarque_Impact a lel:Impact ;
+  lel:text "Confirma la finalización exitosa del Check-in. Es un requisito obligatorio para el Embarque. Contiene la información crítica del Vuelo (puerta, hora de Embarque, Asiento). Es verificado por el Miembro de Operación."@es
+  ;
+  lel:referencesSymbol :Asiento_LEL, :MiembroDeOperacion_LEL, :Vuelo_LEL .
+
+:RealizarCheckInCheckIn_LEL a lel:LELSymbol ;
+  lel:symbolName "Realizar Check-in (Check-in)"^^xsd:string ;
+  lel:hasType :verbType ;
+  lel:hasNotion :RealizarCheckInCheckIn_Notion ;
+  lel:hasImpact :RealizarCheckInCheckIn_Impact .
+
+:AirlineLELModel lel:hasSymbol :RealizarCheckInCheckIn_LEL .
+
+:RealizarCheckInCheckIn_Notion a lel:Notion ;
+  lel:text "Proceso mediante el cual el Pasajero confirma su intención de volar en el Vuelo, presenta la documentación requerida y finaliza la gestión de su Equipaje."@es
+  ;
+  lel:referencesSymbol :Equipaje_LEL, :Pasajero_LEL, :Vuelo_LEL .
+
+:RealizarCheckInCheckIn_Impact a lel:Impact ;
+  lel:text "Valida la vigencia y el Estado del Billete Aéreo. Permite la atribución de un Asiento en la Aeronave. Genera la Tarjeta de Embarque necesaria para el siguiente proceso."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Asiento_LEL, :BilleteAereo_LEL, :EstadoDelBilleteAereo_LEL .
+
+:EmbarcarEmbarque_LEL a lel:LELSymbol ;
+  lel:symbolName "Embarcar (Embarque)"^^xsd:string ;
+  lel:hasType :verbType ;
+  lel:hasNotion :EmbarcarEmbarque_Notion ;
+  lel:hasImpact :EmbarcarEmbarque_Impact .
+
+:AirlineLELModel lel:hasSymbol :EmbarcarEmbarque_LEL .
+
+:EmbarcarEmbarque_Notion a lel:Notion ;
+  lel:text "Proceso de control de acceso final en la puerta de Embarque, donde el Pasajero ingresa físicamente a la Aeronave para ocupar el Asiento asignado, inmediatamente antes del cierre de puertas."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :Asiento_LEL, :Pasajero_LEL .
+
+:EmbarcarEmbarque_Impact a lel:Impact ;
+  lel:text "El Miembro de Operación verifica la Tarjeta de Embarque y permite el acceso. La finalización del Embarque conduce a la actualización del Manifiesto de Vuelo (con el conteo final de Pasajeros y Equipaje a bordo)."@es
+  ;
+  lel:referencesSymbol :Equipaje_LEL, :ManifiestoDeVuelo_LEL, :MiembroDeOperacion_LEL, :Vuelo_LEL .
+
+:MantenimientoManutencion_LEL a lel:LELSymbol ;
+  lel:symbolName "Mantenimiento (Manutención)"^^xsd:string ;
+  lel:hasType :verbType ;
+  lel:hasNotion :MantenimientoManutencion_Notion ;
+  lel:hasImpact :MantenimientoManutencion_Impact .
+
+:AirlineLELModel lel:hasSymbol :MantenimientoManutencion_LEL .
+
+:MantenimientoManutencion_Notion a lel:Notion ;
+  lel:text "Conjunto sistemático de actividades técnicas (inspección, reparación, modificación, revisión) realizadas en la Aeronave, sus sistemas o componentes, con el fin de restaurar o asegurar su condición operativa y de seguridad."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL .
+
+:MantenimientoManutencion_Impact a lel:Impact ;
+  lel:text "Actualiza el Estado de la Aeronave. Requiere la firma de liberación por parte del Miembro de Mantenimiento. Es un requisito obligatorio regulado por la Autoridad Aeronáutica para la continuidad de la operación."@es
+  ;
+  lel:referencesSymbol :Aeronave_LEL, :AutoridadAeronautica_LEL, :EstadoDeLaAeronave_LEL, :MiembroDeMantenimiento_LEL .

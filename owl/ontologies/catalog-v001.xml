@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://example.org/lel-metamodel#LELMetaModel" uri="file:/C:/Users/Marc_/OneDrive/Documentos/Ontology/UNLP/Thesis/lel-metamodel.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://ontologies.mgis.unlp.org/airline-lel" uri="owl_airline_lel.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://example.org/lel-metamodel#LELMetaModel" uri="lel-metamodel___-1216639765.html"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
+</catalog>

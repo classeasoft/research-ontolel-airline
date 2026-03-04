@@ -1,0 +1,800 @@
+@prefix : <http://example.org/airline-lel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/airline-lel#> .
+
+<http://ontologies.mgis.unlp.org/airline-lel#> rdf:type owl:Ontology ;
+                                                owl:imports <http://ontologies.mgis.unlp.org/airline-lel> ,
+                                                            <http://ontologies.mgis.unlp.org/lel-metamodel/1.0> ;
+                                                rdfs:comment "Domain ontology derived from an LEL for an airline: actors, objects, states and operational processes."@en ;
+                                                rdfs:label "Airline LEL Domain Ontology (OWL2 DL)"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/airline-lel#asociadoAItinerario
+:asociadoAItinerario rdf:type owl:ObjectProperty ;
+                     rdfs:domain :BilleteAereo ;
+                     rdfs:range :Itinerario ;
+                     rdfs:label "asociado a itinerario"@es .
+
+
+###  http://example.org/airline-lel#asociadoAVuelo
+:asociadoAVuelo rdf:type owl:ObjectProperty ;
+                rdfs:domain :BilleteAereo ;
+                rdfs:range :Vuelo ;
+                rdfs:label "asociado a vuelo"@es .
+
+
+###  http://example.org/airline-lel#checkInAsignaAsiento
+:checkInAsignaAsiento rdf:type owl:ObjectProperty ;
+                      rdfs:domain :CheckIn ;
+                      rdfs:range :Asiento ;
+                      rdfs:label "check-in asigna asiento"@es .
+
+
+###  http://example.org/airline-lel#checkInEmiteTarjeta
+:checkInEmiteTarjeta rdf:type owl:ObjectProperty ;
+                     rdfs:domain :CheckIn ;
+                     rdfs:range :TarjetaDeEmbarque ;
+                     rdfs:label "check-in emite tarjeta"@es .
+
+
+###  http://example.org/airline-lel#checkInGestionaEquipaje
+:checkInGestionaEquipaje rdf:type owl:ObjectProperty ;
+                         rdfs:domain :CheckIn ;
+                         rdfs:range :Equipaje ;
+                         rdfs:label "check-in gestiona equipaje"@es .
+
+
+###  http://example.org/airline-lel#checkInParaVuelo
+:checkInParaVuelo rdf:type owl:ObjectProperty ;
+                  rdfs:domain :CheckIn ;
+                  rdfs:range :Vuelo ;
+                  rdfs:label "check-in para vuelo"@es .
+
+
+###  http://example.org/airline-lel#checkInValidaBillete
+:checkInValidaBillete rdf:type owl:ObjectProperty ;
+                      rdfs:domain :CheckIn ;
+                      rdfs:range :BilleteAereo ;
+                      rdfs:label "check-in valida billete"@es .
+
+
+###  http://example.org/airline-lel#consolidaManifiesto
+:consolidaManifiesto rdf:type owl:ObjectProperty ;
+                     rdfs:domain :MiembroOperacion ;
+                     rdfs:range :ManifiestoDeVuelo ;
+                     rdfs:label "consolida manifiesto"@es .
+
+
+###  http://example.org/airline-lel#embarqueActualizaManifiesto
+:embarqueActualizaManifiesto rdf:type owl:ObjectProperty ;
+                             rdfs:domain :Embarque ;
+                             rdfs:range :ManifiestoDeVuelo ;
+                             rdfs:label "embarque actualiza manifiesto"@es .
+
+
+###  http://example.org/airline-lel#embarqueParaVuelo
+:embarqueParaVuelo rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Embarque ;
+                   rdfs:range :Vuelo ;
+                   rdfs:label "embarque para vuelo"@es .
+
+
+###  http://example.org/airline-lel#embarqueUsaTarjeta
+:embarqueUsaTarjeta rdf:type owl:ObjectProperty ;
+                    rdfs:domain :Embarque ;
+                    rdfs:range :TarjetaDeEmbarque ;
+                    rdfs:label "embarque usa tarjeta"@es .
+
+
+###  http://example.org/airline-lel#generaManifiesto
+:generaManifiesto rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Vuelo ;
+                  rdfs:range :ManifiestoDeVuelo ;
+                  rdfs:label "genera manifiesto"@es .
+
+
+###  http://example.org/airline-lel#gestionadoPor
+:gestionadoPor rdf:type owl:ObjectProperty ;
+               rdfs:domain :ProgramaDeFidelidad ;
+               rdfs:range :CompaniaAerea ;
+               rdfs:label "gestionado por"@es .
+
+
+###  http://example.org/airline-lel#inscritoEn
+:inscritoEn rdf:type owl:ObjectProperty ;
+            rdfs:domain :PasajeroFrecuente ;
+            rdfs:range :ProgramaDeFidelidad ;
+            rdfs:label "inscrito en"@es .
+
+
+###  http://example.org/airline-lel#llegaA
+:llegaA rdf:type owl:ObjectProperty ;
+        rdfs:domain :Vuelo ;
+        rdfs:range :Aeropuerto ;
+        rdfs:label "llega a"@es .
+
+
+###  http://example.org/airline-lel#manifiestaCarga
+:manifiestaCarga rdf:type owl:ObjectProperty ;
+                 rdfs:domain :ManifiestoDeVuelo ;
+                 rdfs:range :Carga ;
+                 rdfs:label "manifiesta carga"@es .
+
+
+###  http://example.org/airline-lel#manifiestaEquipaje
+:manifiestaEquipaje rdf:type owl:ObjectProperty ;
+                    rdfs:domain :ManifiestoDeVuelo ;
+                    rdfs:range :Equipaje ;
+                    rdfs:label "manifiesta equipaje"@es .
+
+
+###  http://example.org/airline-lel#manifiestaPasajero
+:manifiestaPasajero rdf:type owl:ObjectProperty ;
+                    rdfs:domain :ManifiestoDeVuelo ;
+                    rdfs:range :Pasajero ;
+                    rdfs:label "manifiesta pasajero"@es .
+
+
+###  http://example.org/airline-lel#manifiestaTripulacion
+:manifiestaTripulacion rdf:type owl:ObjectProperty ;
+                       rdfs:domain :ManifiestoDeVuelo ;
+                       rdfs:range :MiembroTripulacion ;
+                       rdfs:label "manifiesta tripulación"@es .
+
+
+###  http://example.org/airline-lel#mantenimientoActualizaEstado
+:mantenimientoActualizaEstado rdf:type owl:ObjectProperty ;
+                              rdfs:domain :Mantenimiento ;
+                              rdfs:range :EstadoAeronave ;
+                              rdfs:label "mantenimiento actualiza estado"@es .
+
+
+###  http://example.org/airline-lel#mantenimientoSobreAeronave
+:mantenimientoSobreAeronave rdf:type owl:ObjectProperty ;
+                            rdfs:domain :Mantenimiento ;
+                            rdfs:range :Aeronave ;
+                            rdfs:label "mantenimiento sobre aeronave"@es .
+
+
+###  http://example.org/airline-lel#mantieneAeronave
+:mantieneAeronave rdf:type owl:ObjectProperty ;
+                  rdfs:domain :MiembroMantenimiento ;
+                  rdfs:range :Aeronave ;
+                  rdfs:label "mantiene aeronave"@es .
+
+
+###  http://example.org/airline-lel#operaAeronave
+:operaAeronave rdf:type owl:ObjectProperty ;
+               rdfs:domain :MiembroTripulacion ;
+               rdfs:range :Aeronave ;
+               rdfs:label "opera aeronave"@es .
+
+
+###  http://example.org/airline-lel#realizaCheckIn
+:realizaCheckIn rdf:type owl:ObjectProperty ;
+                rdfs:domain :Pasajero ;
+                rdfs:range :CheckIn ;
+                rdfs:label "realiza check-in"@es .
+
+
+###  http://example.org/airline-lel#realizaEmbarque
+:realizaEmbarque rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Pasajero ;
+                 rdfs:range :Embarque ;
+                 rdfs:label "realiza embarque"@es .
+
+
+###  http://example.org/airline-lel#realizaMantenimiento
+:realizaMantenimiento rdf:type owl:ObjectProperty ;
+                      rdfs:domain :MiembroMantenimiento ;
+                      rdfs:range :Mantenimiento ;
+                      rdfs:label "realiza mantenimiento"@es .
+
+
+###  http://example.org/airline-lel#realizaReserva
+:realizaReserva rdf:type owl:ObjectProperty ;
+                rdfs:domain :Pasajero ;
+                rdfs:range :ReservaPNR ;
+                rdfs:label "realiza reserva"@es .
+
+
+###  http://example.org/airline-lel#reservaAsiento
+:reservaAsiento rdf:type owl:ObjectProperty ;
+                rdfs:domain :ReservaPNR ;
+                rdfs:range :Asiento ;
+                rdfs:label "reserva asiento"@es .
+
+
+###  http://example.org/airline-lel#reservaClaseTarifa
+:reservaClaseTarifa rdf:type owl:ObjectProperty ;
+                    rdfs:domain :ReservaPNR ;
+                    rdfs:range :ClaseDeTarifa ;
+                    rdfs:label "reserva clase de tarifa"@es .
+
+
+###  http://example.org/airline-lel#reservaParaItinerario
+:reservaParaItinerario rdf:type owl:ObjectProperty ;
+                       rdfs:domain :ReservaPNR ;
+                       rdfs:range :Itinerario ;
+                       rdfs:label "reserva para itinerario"@es .
+
+
+###  http://example.org/airline-lel#saleDe
+:saleDe rdf:type owl:ObjectProperty ;
+        rdfs:domain :Vuelo ;
+        rdfs:range :Aeropuerto ;
+        rdfs:label "sale de"@es .
+
+
+###  http://example.org/airline-lel#tarjetaIndicaAsiento
+:tarjetaIndicaAsiento rdf:type owl:ObjectProperty ;
+                      rdfs:domain :TarjetaDeEmbarque ;
+                      rdfs:range :Asiento ;
+                      rdfs:label "tarjeta indica asiento"@es .
+
+
+###  http://example.org/airline-lel#tarjetaParaPasajero
+:tarjetaParaPasajero rdf:type owl:ObjectProperty ;
+                     rdfs:domain :TarjetaDeEmbarque ;
+                     rdfs:range :Pasajero ;
+                     rdfs:label "tarjeta para pasajero"@es .
+
+
+###  http://example.org/airline-lel#tarjetaParaVuelo
+:tarjetaParaVuelo rdf:type owl:ObjectProperty ;
+                  rdfs:domain :TarjetaDeEmbarque ;
+                  rdfs:range :Vuelo ;
+                  rdfs:label "tarjeta para vuelo"@es .
+
+
+###  http://example.org/airline-lel#tieneBillete
+:tieneBillete rdf:type owl:ObjectProperty ;
+              rdfs:domain :Pasajero ;
+              rdfs:range :BilleteAereo ;
+              rdfs:label "tiene billete"@es .
+
+
+###  http://example.org/airline-lel#tieneClaseTarifa
+:tieneClaseTarifa rdf:type owl:ObjectProperty ;
+                  rdfs:domain :BilleteAereo ;
+                  rdfs:range :ClaseDeTarifa ;
+                  rdfs:label "tiene clase de tarifa"@es .
+
+
+###  http://example.org/airline-lel#tieneEstadoAeronave
+:tieneEstadoAeronave rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Aeronave ;
+                     rdfs:range :EstadoAeronave ;
+                     rdfs:label "tiene estado de la aeronave"@es .
+
+
+###  http://example.org/airline-lel#tieneEstadoBillete
+:tieneEstadoBillete rdf:type owl:ObjectProperty ;
+                    rdfs:domain :BilleteAereo ;
+                    rdfs:range :EstadoBillete ;
+                    rdfs:label "tiene estado del billete"@es .
+
+
+###  http://example.org/airline-lel#tieneEstadoVuelo
+:tieneEstadoVuelo rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Vuelo ;
+                  rdfs:range :EstadoVuelo ;
+                  rdfs:label "tiene estado del vuelo"@es .
+
+
+###  http://example.org/airline-lel#tieneItinerario
+:tieneItinerario rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Vuelo ;
+                 rdfs:range :Itinerario ;
+                 rdfs:label "tiene itinerario"@es .
+
+
+###  http://example.org/airline-lel#tieneTarifa
+:tieneTarifa rdf:type owl:ObjectProperty ;
+             rdfs:domain :BilleteAereo ;
+             rdfs:range :TarifaAerea ;
+             rdfs:label "tiene tarifa aérea"@es .
+
+
+###  http://example.org/airline-lel#usaAeronave
+:usaAeronave rdf:type owl:ObjectProperty ;
+             rdfs:domain :Vuelo ;
+             rdfs:range :Aeronave ;
+             rdfs:label "usa aeronave"@es .
+
+
+###  http://example.org/airline-lel#validaBillete
+:validaBillete rdf:type owl:ObjectProperty ;
+               rdfs:domain :MiembroOperacion ;
+               rdfs:range :BilleteAereo ;
+               rdfs:label "valida billete"@es .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/airline-lel#Aeronave
+:Aeronave rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :tieneEstadoAeronave ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :EstadoAeronave
+                          ] ;
+          rdfs:label "Aeronave"@es .
+
+
+###  http://example.org/airline-lel#Aeropuerto
+:Aeropuerto rdf:type owl:Class ;
+            rdfs:label "Aeropuerto"@es .
+
+
+###  http://example.org/airline-lel#Asiento
+:Asiento rdf:type owl:Class ;
+         rdfs:label "Asiento"@es .
+
+
+###  http://example.org/airline-lel#AutoridadAeronautica
+:AutoridadAeronautica rdf:type owl:Class ;
+                      rdfs:label "Autoridad Aeronáutica"@es .
+
+
+###  http://example.org/airline-lel#AutoridadAeroportuaria
+:AutoridadAeroportuaria rdf:type owl:Class ;
+                        rdfs:label "Autoridad Aeroportuaria"@es .
+
+
+###  http://example.org/airline-lel#BilleteAereo
+:BilleteAereo rdf:type owl:Class ;
+              rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                owl:onProperty :asociadoAItinerario ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :Itinerario
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :tieneClaseTarifa ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :ClaseDeTarifa
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :tieneEstadoBillete ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :EstadoBillete
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :tieneTarifa ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :TarifaAerea
+                              ] ;
+              rdfs:label "Billete Aéreo"@es .
+
+
+###  http://example.org/airline-lel#BilleteValido
+:BilleteValido rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :BilleteAereo
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :tieneEstadoBillete ;
+                                                            owl:someValuesFrom :EstadoBilleteEmitidoConfirmado
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:label "Billete Válido"@es .
+
+
+###  http://example.org/airline-lel#Carga
+:Carga rdf:type owl:Class ;
+       rdfs:label "Carga"@es .
+
+
+###  http://example.org/airline-lel#CheckIn
+:CheckIn rdf:type owl:Class ;
+         rdfs:subClassOf [ rdf:type owl:Restriction ;
+                           owl:onProperty :checkInEmiteTarjeta ;
+                           owl:someValuesFrom :TarjetaDeEmbarque
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :checkInParaVuelo ;
+                           owl:someValuesFrom :Vuelo
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :checkInValidaBillete ;
+                           owl:someValuesFrom :BilleteAereo
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :checkInValidaBillete ;
+                           owl:allValuesFrom :BilleteValido
+                         ] ;
+         rdfs:label "Check-in"@es .
+
+
+###  http://example.org/airline-lel#ClaseDeTarifa
+:ClaseDeTarifa rdf:type owl:Class ;
+               rdfs:label "Clase de Tarifa"@es .
+
+
+###  http://example.org/airline-lel#ClaseTarifaEconomica
+:ClaseTarifaEconomica rdf:type owl:Class ;
+                      rdfs:subClassOf :ClaseDeTarifa ;
+                      rdfs:label "Clase de Tarifa Económica (Y,B,M,H,Q,L,T,V,X,N)"@es .
+
+
+###  http://example.org/airline-lel#ClaseTarifaEconomicaBasica
+:ClaseTarifaEconomicaBasica rdf:type owl:Class ;
+                            rdfs:subClassOf :ClaseDeTarifa ;
+                            rdfs:label "Clase de Tarifa Económica Básica (E/O)"@es .
+
+
+###  http://example.org/airline-lel#ClaseTarifaEconomicaPremium
+:ClaseTarifaEconomicaPremium rdf:type owl:Class ;
+                             rdfs:subClassOf :ClaseDeTarifa ;
+                             rdfs:label "Clase de Tarifa Económica Premium (W/P)"@es .
+
+
+###  http://example.org/airline-lel#ClaseTarifaEjecutiva
+:ClaseTarifaEjecutiva rdf:type owl:Class ;
+                      rdfs:subClassOf :ClaseDeTarifa ;
+                      rdfs:label "Clase de Tarifa Ejecutiva (J,C,D,I,Z)"@es .
+
+
+###  http://example.org/airline-lel#ClaseTarifaPrimeraClase
+:ClaseTarifaPrimeraClase rdf:type owl:Class ;
+                         rdfs:subClassOf :ClaseDeTarifa ;
+                         rdfs:label "Clase de Tarifa Primera Clase (F/A)"@es .
+
+
+###  http://example.org/airline-lel#ClaseTarifaPromocional
+:ClaseTarifaPromocional rdf:type owl:Class ;
+                        rdfs:subClassOf :ClaseDeTarifa ;
+                        rdfs:label "Clase de Tarifa Promocional (R,S,G)"@es .
+
+
+###  http://example.org/airline-lel#CompaniaAerea
+:CompaniaAerea rdf:type owl:Class ;
+               rdfs:label "Compañía Aérea"@es .
+
+
+###  http://example.org/airline-lel#Embarque
+:Embarque rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :embarqueActualizaManifiesto ;
+                            owl:someValuesFrom :ManifiestoDeVuelo
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :embarqueParaVuelo ;
+                            owl:someValuesFrom :Vuelo
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :embarqueUsaTarjeta ;
+                            owl:someValuesFrom :TarjetaDeEmbarque
+                          ] ;
+          rdfs:label "Embarque"@es .
+
+
+###  http://example.org/airline-lel#Equipaje
+:Equipaje rdf:type owl:Class ;
+          rdfs:label "Equipaje"@es .
+
+
+###  http://example.org/airline-lel#EstadoAeronave
+:EstadoAeronave rdf:type owl:Class ;
+                rdfs:label "Estado de la Aeronave"@es .
+
+
+###  http://example.org/airline-lel#EstadoAeronaveAOG
+:EstadoAeronaveAOG rdf:type owl:Class ;
+                   rdfs:subClassOf :EstadoAeronave ;
+                   rdfs:label "AOG (Aircraft on Ground)"@es .
+
+
+###  http://example.org/airline-lel#EstadoAeronaveMELCDL
+:EstadoAeronaveMELCDL rdf:type owl:Class ;
+                      rdfs:subClassOf :EstadoAeronave ;
+                      rdfs:label "MEL/CDL Deferral"@es .
+
+
+###  http://example.org/airline-lel#EstadoAeronaveMP
+:EstadoAeronaveMP rdf:type owl:Class ;
+                  rdfs:subClassOf :EstadoAeronave ;
+                  rdfs:label "Mantenimiento Programado (MP)"@es .
+
+
+###  http://example.org/airline-lel#EstadoAeronaveOperacional
+:EstadoAeronaveOperacional rdf:type owl:Class ;
+                           rdfs:subClassOf :EstadoAeronave ;
+                           rdfs:label "Operacional (OP)"@es .
+
+
+###  http://example.org/airline-lel#EstadoBillete
+:EstadoBillete rdf:type owl:Class ;
+               rdfs:label "Estado del Billete Aéreo"@es .
+
+
+###  http://example.org/airline-lel#EstadoBilleteAnuladoCancelado
+:EstadoBilleteAnuladoCancelado rdf:type owl:Class ;
+                               rdfs:subClassOf :EstadoBillete ;
+                               rdfs:label "Anulado/Cancelado"@es .
+
+
+###  http://example.org/airline-lel#EstadoBilleteEmitidoConfirmado
+:EstadoBilleteEmitidoConfirmado rdf:type owl:Class ;
+                                rdfs:subClassOf :EstadoBillete ;
+                                rdfs:label "Emitido/Confirmado"@es .
+
+
+###  http://example.org/airline-lel#EstadoBilletePendientePago
+:EstadoBilletePendientePago rdf:type owl:Class ;
+                            rdfs:subClassOf :EstadoBillete ;
+                            rdfs:label "Pendiente de Pago"@es .
+
+
+###  http://example.org/airline-lel#EstadoBilleteReembolsado
+:EstadoBilleteReembolsado rdf:type owl:Class ;
+                          rdfs:subClassOf :EstadoBillete ;
+                          rdfs:label "Reembolsado"@es .
+
+
+###  http://example.org/airline-lel#EstadoBilleteUtilizado
+:EstadoBilleteUtilizado rdf:type owl:Class ;
+                        rdfs:subClassOf :EstadoBillete ;
+                        rdfs:label "Utilizado (Flown)"@es .
+
+
+###  http://example.org/airline-lel#EstadoVuelo
+:EstadoVuelo rdf:type owl:Class ;
+             rdfs:label "Estado del Vuelo"@es .
+
+
+###  http://example.org/airline-lel#EstadoVueloCancelado
+:EstadoVueloCancelado rdf:type owl:Class ;
+                      rdfs:subClassOf :EstadoVuelo ;
+                      rdfs:label "Cancelado"@es .
+
+
+###  http://example.org/airline-lel#EstadoVueloDespegadoAterrizado
+:EstadoVueloDespegadoAterrizado rdf:type owl:Class ;
+                                rdfs:subClassOf :EstadoVuelo ;
+                                rdfs:label "Despegado/Aterrizado"@es .
+
+
+###  http://example.org/airline-lel#EstadoVueloEmbarcando
+:EstadoVueloEmbarcando rdf:type owl:Class ;
+                       rdfs:subClassOf :EstadoVuelo ;
+                       rdfs:label "Embarcando"@es .
+
+
+###  http://example.org/airline-lel#EstadoVueloEnHorario
+:EstadoVueloEnHorario rdf:type owl:Class ;
+                      rdfs:subClassOf :EstadoVuelo ;
+                      rdfs:label "En Horario"@es .
+
+
+###  http://example.org/airline-lel#EstadoVueloProgramadoConfirmado
+:EstadoVueloProgramadoConfirmado rdf:type owl:Class ;
+                                 rdfs:subClassOf :EstadoVuelo ;
+                                 rdfs:label "Programado/Confirmado"@es .
+
+
+###  http://example.org/airline-lel#EstadoVueloRetrasado
+:EstadoVueloRetrasado rdf:type owl:Class ;
+                      rdfs:subClassOf :EstadoVuelo ;
+                      rdfs:label "Retrasado"@es .
+
+
+###  http://example.org/airline-lel#Itinerario
+:Itinerario rdf:type owl:Class ;
+            rdfs:label "Itinerario"@es .
+
+
+###  http://example.org/airline-lel#ItinerarioConConexion
+:ItinerarioConConexion rdf:type owl:Class ;
+                       rdfs:subClassOf :Itinerario ;
+                       rdfs:label "Itinerario con Conexión"@es .
+
+
+###  http://example.org/airline-lel#ItinerarioConEscala
+:ItinerarioConEscala rdf:type owl:Class ;
+                     rdfs:subClassOf :Itinerario ;
+                     rdfs:label "Itinerario con Escala"@es .
+
+
+###  http://example.org/airline-lel#ItinerarioDirecto
+:ItinerarioDirecto rdf:type owl:Class ;
+                   rdfs:subClassOf :Itinerario ;
+                   rdfs:label "Itinerario Directo"@es .
+
+
+###  http://example.org/airline-lel#ManifiestoDeVuelo
+:ManifiestoDeVuelo rdf:type owl:Class ;
+                   rdfs:label "Manifiesto de Vuelo"@es .
+
+
+###  http://example.org/airline-lel#Mantenimiento
+:Mantenimiento rdf:type owl:Class ;
+               rdfs:label "Mantenimiento"@es .
+
+
+###  http://example.org/airline-lel#MiembroMantenimiento
+:MiembroMantenimiento rdf:type owl:Class ;
+                      rdfs:label "Miembro de Mantenimiento"@es .
+
+
+###  http://example.org/airline-lel#MiembroOperacion
+:MiembroOperacion rdf:type owl:Class ;
+                  rdfs:label "Miembro de Operación"@es .
+
+
+###  http://example.org/airline-lel#MiembroTripulacion
+:MiembroTripulacion rdf:type owl:Class ;
+                    rdfs:label "Miembro de Tripulación"@es .
+
+
+###  http://example.org/airline-lel#NarrowBody
+:NarrowBody rdf:type owl:Class ;
+            rdfs:subClassOf :Aeronave ;
+            owl:disjointWith :WideBody ;
+            rdfs:label "Narrow-body"@en .
+
+
+###  http://example.org/airline-lel#Pasajero
+:Pasajero rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :tieneBillete ;
+                            owl:someValuesFrom :BilleteAereo
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :tieneBillete ;
+                            owl:allValuesFrom :BilleteAereo
+                          ] ;
+          rdfs:label "Pasajero"@es .
+
+
+###  http://example.org/airline-lel#PasajeroFrecuente
+:PasajeroFrecuente rdf:type owl:Class ;
+                   rdfs:subClassOf :Pasajero ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :inscritoEn ;
+                                     owl:someValuesFrom :ProgramaDeFidelidad
+                                   ] ;
+                   rdfs:label "Pasajero Frecuente"@es .
+
+
+###  http://example.org/airline-lel#ProgramaDeFidelidad
+:ProgramaDeFidelidad rdf:type owl:Class ;
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty :gestionadoPor ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass :CompaniaAerea
+                                     ] ;
+                     rdfs:label "Programa de Fidelidad"@es .
+
+
+###  http://example.org/airline-lel#ReservaPNR
+:ReservaPNR rdf:type owl:Class ;
+            rdfs:label "Reserva (PNR)"@es .
+
+
+###  http://example.org/airline-lel#TarifaAerea
+:TarifaAerea rdf:type owl:Class ;
+             rdfs:label "Tarifa Aérea"@es .
+
+
+###  http://example.org/airline-lel#TarjetaDeEmbarque
+:TarjetaDeEmbarque rdf:type owl:Class ;
+                   rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                     owl:onProperty :tarjetaIndicaAsiento ;
+                                     owl:someValuesFrom :Asiento
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :tarjetaParaPasajero ;
+                                     owl:someValuesFrom :Pasajero
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :tarjetaParaVuelo ;
+                                     owl:someValuesFrom :Vuelo
+                                   ] ;
+                   rdfs:label "Tarjeta de Embarque"@es .
+
+
+###  http://example.org/airline-lel#Vuelo
+:Vuelo rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :generaManifiesto ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :ManifiestoDeVuelo
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :llegaA ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Aeropuerto
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :saleDe ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Aeropuerto
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :tieneEstadoVuelo ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :EstadoVuelo
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :tieneItinerario ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Itinerario
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :usaAeronave ;
+                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                         owl:onClass :Aeronave
+                       ] ;
+       rdfs:label "Vuelo"@es .
+
+
+###  http://example.org/airline-lel#WideBody
+:WideBody rdf:type owl:Class ;
+          rdfs:subClassOf :Aeronave ;
+          rdfs:label "Wide-body"@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ClaseTarifaEconomica
+                :ClaseTarifaEconomicaBasica
+                :ClaseTarifaEconomicaPremium
+                :ClaseTarifaEjecutiva
+                :ClaseTarifaPrimeraClase
+                :ClaseTarifaPromocional
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EstadoAeronaveAOG
+                :EstadoAeronaveMELCDL
+                :EstadoAeronaveMP
+                :EstadoAeronaveOperacional
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EstadoBilleteAnuladoCancelado
+                :EstadoBilleteEmitidoConfirmado
+                :EstadoBilletePendientePago
+                :EstadoBilleteReembolsado
+                :EstadoBilleteUtilizado
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :EstadoVueloCancelado
+                :EstadoVueloDespegadoAterrizado
+                :EstadoVueloEmbarcando
+                :EstadoVueloEnHorario
+                :EstadoVueloProgramadoConfirmado
+                :EstadoVueloRetrasado
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ItinerarioConConexion
+                :ItinerarioConEscala
+                :ItinerarioDirecto
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

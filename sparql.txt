@@ -1,0 +1,128 @@
+Prefixos (cole no topo de todas)
+PREFIX lel: <http://ontologies.mgis.unlp.org/lel-metamodel#>
+PREFIX :    <http://ontologies.mgis.unlp.org/airline-lel#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+1) Listar todos os símbolos do LEL com tipo + noção + impacto (texto curto)
+SELECT ?symbol ?type ?notionText ?impactText
+WHERE {
+  ?symbol rdf:type lel:LELSymbol ;
+          lel:hasType ?typeInd ;
+          lel:hasNotion ?notion ;
+          lel:hasImpact ?impact .
+
+  ?typeInd rdf:type ?type .
+
+  ?notion lel:text ?notionText .
+  ?impact lel:text ?impactText .
+}
+ORDER BY ?type ?symbol
+
+validar se todo mundo está completo.
+
+2) “Quem o Pasajero impacta?” (via referencesSymbol no Impact)
+SELECT ?impactedSymbol
+WHERE {
+  :Pasajero_Impact lel:referencesSymbol ?impactedSymbol .
+}
+ORDER BY ?impactedSymbol
+
+
+Se você quer incluir também referências que estão na Notion:
+
+SELECT DISTINCT ?ref
+WHERE {
+  { :Pasajero_Notion lel:referencesSymbol ?ref . }
+  UNION
+  { :Pasajero_Impact lel:referencesSymbol ?ref . }
+}
+ORDER BY ?ref
+
+3) “Quais símbolos referenciam X?” (quem menciona BilleteAereo)
+SELECT DISTINCT ?symbol ?section
+WHERE {
+  ?symbol rdf:type lel:LELSymbol ;
+          lel:hasNotion ?n ;
+          lel:hasImpact ?i .
+
+  { ?n lel:referencesSymbol :BilleteAereo_LEL . BIND("notion" AS ?section) }
+  UNION
+  { ?i lel:referencesSymbol :BilleteAereo_LEL . BIND("impact" AS ?section) }
+}
+ORDER BY ?symbol ?section
+
+4) Tabela “centralidade”: símbolos mais referenciados
+SELECT ?target (COUNT(?source) AS ?refs)
+WHERE {
+  ?sourcePart lel:referencesSymbol ?target .
+  ?source rdf:type lel:LELSymbol ;
+          (lel:hasNotion|lel:hasImpact) ?sourcePart .
+}
+GROUP BY ?target
+ORDER BY DESC(?refs) ?target
+
+
+5) Encontrar símbolos incompletos (faltando tipo/noção/impacto)
+SELECT DISTINCT ?symbol
+WHERE {
+  ?symbol rdf:type lel:LEL-Symbol .
+
+  {
+    FILTER NOT EXISTS { ?symbol lel:hasType ?t . }
+  }
+  UNION
+  {
+    FILTER NOT EXISTS { ?symbol lel:hasNotion ?n . }
+  }
+  UNION
+  {
+    FILTER NOT EXISTS { ?symbol lel:hasImpact ?i . }
+  }
+}
+ORDER BY ?symbol
+
+6) Ver só os VerbType (eventos) e o que eles referenciam
+SELECT DISTINCT ?event ?ref
+WHERE {
+  ?event rdf:type lel:LELSymbol ;
+         lel:hasType ?typeInd ;
+         lel:hasImpact ?imp .
+
+  ?typeInd rdf:type lel:VerbType .
+
+  OPTIONAL { ?imp lel:referencesSymbol ?ref . }
+}
+ORDER BY ?event ?ref
+
+7) Buscar por palavra no texto (ex.: “Check-in”)
+SELECT DISTINCT ?symbol ?where ?text
+WHERE {
+  ?symbol rdf:type lel:LELSymbol ;
+          lel:hasNotion ?n ;
+          lel:hasImpact ?i .
+
+  {
+    ?n lel:text ?text .
+    BIND("notion" AS ?where)
+    FILTER regex(str(?text), "check-in")
+  }
+  UNION
+  {
+    ?i lel:text ?text .
+    BIND("impact" AS ?where)
+    FILTER regex(str(?text), "check-in")
+  }
+}
+ORDER BY ?symbol ?where
+
+8) Grafo (arestas) para exportar e desenhar (OntoGraf / Graphviz)
+
+Só relações principais:
+
+SELECT ?s ?p ?o
+WHERE {
+  VALUES ?p { lel:hasType lel:hasNotion lel:hasImpact lel:referencesSymbol }
+  ?s ?p ?o .
+}
+ORDER BY ?s ?p ?o

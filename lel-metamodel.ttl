@@ -1,0 +1,235 @@
+@base <http://ontologies.mgis.unlp.org/lel-metamodel#> . 
+@prefix : <http://ontologies.mgis.unlp.org/lel-metamodel#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://ontologies.mgis.unlp.org/lel-metamodel> a owl:Ontology ;
+  owl:versionIRI <http://ontologies.mgis.unlp.org/lel-metamodel/1.0> ;
+  rdfs:label "Meta-modelo LEL (estilo Leite) - OWL2 DL"@es ;
+  rdfs:comment "Ontología meta-modelo para el Léxico Extendido del Lenguaje (LEL): símbolos, tipos de símbolo, noción, impacto y referencias entre símbolos."@es .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:hasImpact a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:domain :LEL-Symbol ;
+  rdfs:range :Impact ;
+  rdfs:label "tiene impacto"@es ;
+  rdfs:comment "Relaciona un símbolo LEL con su sección de Impacto (obligatoria y única)."@es .
+
+:hasNotion a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:domain :LEL-Symbol ;
+  rdfs:range :Notion ;
+  rdfs:label "tiene noción"@es ;
+  rdfs:comment "Relaciona un símbolo LEL con su sección de Noción (obligatoria y única)."@es .
+
+:hasSymbol a owl:ObjectProperty ;
+  rdfs:domain :LELModel ;
+  rdfs:range :LEL-Symbol ;
+  rdfs:label "contiene símbolo"@es ;
+  rdfs:comment "Un LELModel contiene entradas (símbolos) del léxico."@es .
+
+:hasType a owl:ObjectProperty, owl:FunctionalProperty ;
+  rdfs:domain :LEL-Symbol ;
+  rdfs:range :SymbolType ;
+  rdfs:label "tiene tipo"@es ;
+  rdfs:comment "Asigna exactamente un meta-tipo a un símbolo (sujeto/objeto/estado/verbo)."@es .
+
+:referencesSymbol a owl:ObjectProperty ;
+  rdfs:domain _:genid1 ;
+  rdfs:range :LEL-Symbol ;
+  rdfs:label "referencia símbolo"@es ;
+  rdfs:comment "Captura la circularidad del LEL: la Noción/Impacto referencian otros símbolos del léxico."@es .
+
+#################################################################
+# Nuevos axiomas (estilo Leite): pertenencia/propiedad + soporte de cierre
+#################################################################
+
+:isNotionOf a owl:ObjectProperty, owl:FunctionalProperty ;
+  owl:inverseOf :hasNotion ;
+  rdfs:domain :Notion ;
+  rdfs:range :LEL-Symbol ;
+  rdfs:label "es noción de"@es ;
+  rdfs:comment "Cada Noción pertenece a exactamente un símbolo LEL (no se comparte entre símbolos)."@es .
+
+:isImpactOf a owl:ObjectProperty, owl:FunctionalProperty ;
+  owl:inverseOf :hasImpact ;
+  rdfs:domain :Impact ;
+  rdfs:range :LEL-Symbol ;
+  rdfs:label "es impacto de"@es ;
+  rdfs:comment "Cada Impacto pertenece a exactamente un símbolo LEL (no se comparte entre símbolos)."@es .
+
+:inModel a owl:ObjectProperty ;
+  rdfs:domain :LEL-Symbol ;
+  rdfs:range :LELModel ;
+  rdfs:label "en modelo"@es ;
+  rdfs:comment "Vincula un símbolo con el LELModel al que pertenece (soporte para el principio de cierre del LEL)."@es .
+
+:symbolInModel a owl:ObjectProperty, owl:FunctionalProperty ;
+  owl:inverseOf :hasSymbol ;
+  rdfs:domain :LEL-Symbol ;
+  rdfs:range :LELModel ;
+  rdfs:label "símbolo en modelo"@es ;
+  rdfs:comment "Inversa de contiene símbolo; funcional para que un símbolo pertenezca como máximo a un único LELModel."@es .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:symbolName a owl:DatatypeProperty ;
+  rdfs:domain :LEL-Symbol ;
+  rdfs:range xsd:string ;
+  rdfs:label "nombre del símbolo"@es ;
+  rdfs:comment "Nombre legible por humanos del símbolo del LEL."@es .
+
+:text a owl:DatatypeProperty ;
+  rdfs:domain _:genid4 ;
+  rdfs:range rdf:langString ;
+  rdfs:label "texto"@es ;
+  rdfs:comment "Contenido textual bruto de Noción/Impacto (permite literales con etiqueta de idioma, p.ej. \"...\"@es)."@es .
+
+#################################################################
+# Classes
+#################################################################
+
+:Impact a owl:Class ;
+  rdfs:subClassOf _:genid7 ;
+  rdfs:label "Impacto"@es ;
+  rdfs:comment "Sección 'Impacto' de un símbolo del LEL: efectos/acciones/consecuencias asociadas al símbolo."@es .
+
+:LEL-Symbol a owl:Class ;
+  rdfs:subClassOf _:genid8, _:genid9, _:genid10 ;
+  rdfs:label "Símbolo LEL"@es ;
+  rdfs:comment "Entrada (símbolo) en un LEL (p.ej., 'Pasajero', 'Vuelo')."@es .
+
+:LELModel a owl:Class ;
+  rdfs:label "Modelo LEL"@es ;
+  rdfs:comment "Artefacto LEL como contenedor del conjunto de símbolos del léxico."@es .
+
+:Notion a owl:Class ;
+  rdfs:subClassOf _:genid11 ;
+  rdfs:label "Noción"@es ;
+  rdfs:comment "Sección 'Noción' de un símbolo del LEL: definición/intención/semántica en lenguaje natural."@es .
+
+:ObjectType a owl:Class ;
+  rdfs:subClassOf :SymbolType ;
+  rdfs:label "Tipo Objeto"@es ;
+  rdfs:comment "Tipo de símbolo LEL: Objeto (entidad pasiva)."@es .
+
+:StateType a owl:Class ;
+  rdfs:subClassOf :SymbolType ;
+  rdfs:label "Tipo Estado"@es ;
+  rdfs:comment "Tipo de símbolo LEL: Estado."@es .
+
+:SubjectType a owl:Class ;
+  rdfs:subClassOf :SymbolType ;
+  rdfs:label "Tipo Sujeto"@es ;
+  rdfs:comment "Tipo de símbolo LEL: Sujeto (actor/agente)."@es .
+
+:SymbolType a owl:Class ;
+  rdfs:label "Tipo de Símbolo"@es ;
+  rdfs:comment "Clasificación a nivel meta de un símbolo del LEL."@es .
+
+:VerbType a owl:Class ;
+  rdfs:subClassOf :SymbolType ;
+  rdfs:label "Tipo Verbo"@es ;
+  rdfs:comment "Tipo de símbolo LEL: Verbo/Evento (acción/proceso del léxico)."@es .
+
+#################################################################
+# Blank nodes / unions (estilo OWLAPI)
+#################################################################
+
+_:genid1 a owl:Class ;
+  owl:unionOf _:genid3 .
+
+_:genid3 a rdf:List ;
+  rdf:first :Impact ;
+  rdf:rest _:genid2 .
+
+_:genid2 a rdf:List ;
+  rdf:first :Notion ;
+  rdf:rest rdf:nil .
+
+_:genid4 a owl:Class ;
+  owl:unionOf _:genid6 .
+
+_:genid6 a rdf:List ;
+  rdf:first :Impact ;
+  rdf:rest _:genid5 .
+
+_:genid5 a rdf:List ;
+  rdf:first :Notion ;
+  rdf:rest rdf:nil .
+
+#################################################################
+# Restrictions / Axioms (estructura central del LEL)
+#################################################################
+
+# Noción/Impacto solo pueden referenciar símbolos LEL
+_:genid7 a owl:Restriction ;
+  owl:allValuesFrom :LEL-Symbol ;
+  owl:onProperty :referencesSymbol .
+
+_:genid11 a owl:Restriction ;
+  owl:allValuesFrom :LEL-Symbol ;
+  owl:onProperty :referencesSymbol .
+
+# Cada símbolo tiene exactamente 1 tipo, 1 noción, 1 impacto
+_:genid8 a owl:Restriction ;
+  owl:onClass :Impact ;
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+  owl:onProperty :hasImpact .
+
+_:genid9 a owl:Restriction ;
+  owl:onClass :Notion ;
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+  owl:onProperty :hasNotion .
+
+_:genid10 a owl:Restriction ;
+  owl:onClass :SymbolType ;
+  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+  owl:onProperty :hasType .
+
+#################################################################
+# Disjointness (tipos mutuamente excluyentes)
+#################################################################
+
+_:genid12 a owl:AllDisjointClasses ;
+  owl:members _:genid16 .
+
+_:genid16 a rdf:List ;
+  rdf:first :ObjectType ;
+  rdf:rest _:genid15 .
+
+_:genid15 a rdf:List ;
+  rdf:first :StateType ;
+  rdf:rest _:genid14 .
+
+_:genid14 a rdf:List ;
+  rdf:first :SubjectType ;
+  rdf:rest _:genid13 .
+
+_:genid13 a rdf:List ;
+  rdf:first :VerbType ;
+  rdf:rest rdf:nil .
+
+#################################################################
+# Opcional (circularidad mínima): usar con cuidado durante la autoría
+#################################################################
+# :Notion rdfs:subClassOf [
+#   a owl:Restriction ;
+#   owl:onProperty :referencesSymbol ;
+#   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+#   owl:onClass :LEL-Symbol
+# ] .
+#
+# :Impact rdfs:subClassOf [
+#   a owl:Restriction ;
+#   owl:onProperty :referencesSymbol ;
+#   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+#   owl:onClass :LEL-Symbol
+# ] .

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://ontologies.mgis.unlp.org/airline-lel" uri="airline-lel-individuals.ttl"/>
+    <uri name="http://ontologies.mgis.unlp.org/lel-metamodel" uri="lel-metamodel.ttl"/>
+    <uri name="http://ontologies.mgis.unlp.org/lel-metamodel/1.0" uri="lel-metamodel.ttl"/>
+</catalog>
