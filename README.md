@@ -78,6 +78,7 @@ Protégé cargará automáticamente las importaciones utilizando el archivo:
 Después de cargar la ontología, deberían aparecer:
 
 ### Classes
+````
 LELSymbol
 Notion
 Impact
@@ -85,25 +86,26 @@ SubjectType
 ObjectType
 VerbType
 StateType
-
+````
 ### Object Properties
+````
 hasNotion
 hasImpact
 hasType
 referencesSymbol
-
+````
 
 ### Data Properties
+````
 symbolName
 text
-
+````
 ## Step 3
 
 En Protégé, revisar en la sección **Classes** si aparecen clases del dominio de aerolínea como:
 - Aeronave  
 - Pasajero  
 - Vuelo 
-Si no aparecen:
 Si no aparecen:
 
 1. Verificar en **Active Ontology** si el metamodelo está cargado.
@@ -173,7 +175,7 @@ Ejemplos de símbolos del LEL:
 Cada símbolo del LEL está representado por tres individuos principales.
 
 Ejemplo:
-
+````
 Vuelo_LEL
 Vuelo_Notion
 Vuelo_Impact
@@ -184,7 +186,7 @@ Vuelo_LEL
 hasNotion → Vuelo_Notion
 hasImpact → Vuelo_Impact
 hasType → objectType
-
+````
 Las descripciones textuales se almacenan utilizando propiedades de datos.
 
 ---
@@ -200,12 +202,12 @@ Abrir:
 owl/index.html 
 
 para explorar:
-
+````
 - classes
 - properties
 - individuals
 - relationships
-
+````
 en un navegador.
 
 ---
