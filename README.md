@@ -15,7 +15,7 @@ The ontology is intended to support research on **semantic validation of domain 
 
 # Repository Structure
 ```text
-/
+.
 ├── catalog-v001.xml
 ├── airline-lel.owl.properties
 │
@@ -28,7 +28,7 @@ The ontology is intended to support research on **semantic validation of domain 
 ├── metamodel
 │ └── lel-metamodel.ttl
 │
-└── owl
+├── owl
 │	├── index.html
 │	├── classes.html
 │	├── objectproperties.html
@@ -37,7 +37,7 @@ The ontology is intended to support research on **semantic validation of domain 
 │
 │
 └── queries
-│ └── sparql.txt
+  └── sparql.txt
 ````
 
 ### Main Files
