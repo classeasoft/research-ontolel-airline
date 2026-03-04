@@ -89,6 +89,16 @@ referencesSymbol
 symbolName
 text
 
+## Step 3
+
+Check in Protegé in classes if you find airline domain classes like Aeronave, Pasajero etc.
+In case you cant find, check in Active Ontology you find the metamodel loaded, if not, load  /metamodel/lel-metamodel.ttl in direct imports.
+Once you load it, you have all ABox in Protegé.
+
+## Step 4
+
+Load the individuals /individuals/airline-lel-individuals.ttl in direct imports, and check in Individuals tab if a list of LEL elements is shown.
+Case you can see anything, try to reload in File/Reload.
 
 ---
 
