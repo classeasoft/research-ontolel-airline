@@ -17,22 +17,27 @@ The ontology is intended to support research on **semantic validation of domain 
 ```text
 /
 ├── catalog-v001.xml
-├── airline-lel.owl
 ├── airline-lel.owl.properties
 │
-├── metamodel
-│ └── lel-metamodel.ttl
+├── domain
+│ └── airline-lel.owl.ttl
 │
 ├── individuals
 │ └── airline-lel-individuals.ttl
 │
+├── metamodel
+│ └── lel-metamodel.ttl
+│
 └── owl
-├── index.html
-├── classes.html
-├── objectproperties.html
-├── dataproperties.html
-└── individuals.html
-
+│	├── index.html
+│	├── classes.html
+│	├── objectproperties.html
+│	├── dataproperties.html
+│	└── individuals.html
+│
+│
+└── queries
+│ └── sparql.txt
 ````
 
 ### Main Files
@@ -55,8 +60,8 @@ The ontology is intended to support research on **semantic validation of domain 
 Open **Protégé**.
 
 Select:
-File → Open
-Protégé will automatically load the imports using the file:
+File → Open 
+Protégé will automatically load the imports using the file: domain/airline-lel.owl.ttl
 
 ---
 
@@ -189,6 +194,7 @@ lel:hasImpact ?impact .
 
 }
 ORDER BY ?type ?symbol
+```` 
 
 Research Context
 
