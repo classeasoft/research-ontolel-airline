@@ -19,6 +19,13 @@ The ontology is intended to support research on **semantic validation of domain 
 ├── catalog-v001.xml
 ├── airline-lel.owl.properties
 │
+├── doc
+│ ├── DL-axioms
+│ │	└── Meta-modelo do LEL em Description Logic (DL).docx
+│ └── Lel-glossary
+│   └── Léxico Extendido del Lenguaje (LEL) – Línea Aérea.docx
+│
+│
 ├── domain
 │ └── airline-lel.owl.ttl
 │
@@ -50,6 +57,7 @@ The ontology is intended to support research on **semantic validation of domain 
 | `catalog-v001.xml` | IRI resolution configuration |
 | `airline-lel.owl.properties` | Protégé project configuration |
 | `owl/` | HTML documentation generated from the ontology |
+| `doc/` | Doc with the LEL, the basic input to estructure ABox. DL has logical theorical basis for reasoning |
 
 ---
 
