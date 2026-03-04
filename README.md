@@ -13,25 +13,27 @@ The ontology is intended to support research on **semantic validation of domain 
 
 ---
 
-```markdown
-## Repository Structure
-
+# Repository Structure
 ```text
 /
-  catalog-v001.xml
-  airline-lel.owl
-  airline-lel.owl.properties
-  metamodel/
-    lel-metamodel.ttl
-  individuals/
-    airline-lel-individuals.ttl
-  owl/
-    index.html
-    classes.html
-    objectproperties.html
-    dataproperties.html
-    individuals.html
+├── catalog-v001.xml
+├── airline-lel.owl
+├── airline-lel.owl.properties
+│
+├── metamodel
+│ └── lel-metamodel.ttl
+│
+├── individuals
+│ └── airline-lel-individuals.ttl
+│
+└── owl
+├── index.html
+├── classes.html
+├── objectproperties.html
+├── dataproperties.html
+└── individuals.html
 
+````
 
 ### Main Files
 
