@@ -19,7 +19,7 @@ WHERE {
 }
 ORDER BY ?type ?symbol
 
-validar se todo mundo está completo.
+validar se todo mundo está completo
 
 2) “Quem o Pasajero impacta?” (via referencesSymbol no Impact)
 SELECT ?impactedSymbol
