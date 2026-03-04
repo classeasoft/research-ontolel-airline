@@ -258,6 +258,8 @@ soporte basado en ontologías para la ingeniería de requisitos.
 
 Autor
 
-Marc Marinho de Alcântara
+Marc Marinho de Alcântara  
 Universidad Nacional de La Plata (UNLP)
+Magister en Ingeniería de Software - Fac. Ciencias Informáticas
+
 
