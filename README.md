@@ -1,15 +1,15 @@
-# LEL Ontology – Airline Example
+# LEL Ontology – Ejemplo del Dominio de Aerolínea
 
-This repository contains an ontology-based representation of the **Extended Language Lexicon (LEL)** applied to an **airline domain**.
+Este repositorio contiene una representación basada en ontologías del **Léxico Extendido del Lenguaje (LEL)** aplicada a un **dominio de aerolínea**.
 
-The project was developed using **Protégé** and includes:
+El proyecto fue desarrollado utilizando **Protégé** e incluye:
 
-- the **LEL metamodel**
-- a **domain ontology**
-- **LEL individuals**
-- automatically generated **HTML ontology documentation**
+- el **LEL metamodel**
+- una **Ontologia de dominio**
+- **LEL indivíduos**
+- generado automaticamente **Documentación HTML de la ontologia **
 
-The ontology is intended to support research on **semantic validation of domain vocabularies in Requirements Engineering**.
+La ontología está destinada a apoyar investigaciones sobre **validación semántica de vocabularios de dominio en Ingeniería de Requisitos**.
 
 ---
 
@@ -49,15 +49,15 @@ The ontology is intended to support research on **semantic validation of domain 
 
 ### Main Files
 
-| File | Description |
+| Archivo | Descripción |
 |-----|-------------|
-| `airline-lel.owl` | Main ontology project opened by Protégé |
-| `lel-metamodel.ttl` | Core LEL metamodel (TBox) |
-| `airline-lel-individuals.ttl` | LEL instances (ABox) |
-| `catalog-v001.xml` | IRI resolution configuration |
-| `airline-lel.owl.properties` | Protégé project configuration |
-| `owl/` | HTML documentation generated from the ontology |
-| `doc/` | Doc with the LEL, the basic input to estructure ABox. DL has logical theorical basis for reasoning |
+| `airline-lel.owl` | Proyecto principal de la ontología abierto en Protégé |
+| `lel-metamodel.ttl` | Metamodelo central del LEL (TBox)  |
+| `airline-lel-individuals.ttl` | Instancias del LEL (ABox) |
+| `catalog-v001.xml` | Configuración de resolución de IRI |
+| `airline-lel.owl.properties` | Configuración del proyecto en Protégé |
+| `owl/` | Documentación HTML generada a partir de la ontología |
+| `doc/` | Documentos con el LEL, entrada base para estructurar la ABox. DL proporciona la base teórica lógica para el razonamiento |
 
 ---
 
@@ -69,13 +69,13 @@ Open **Protégé**.
 
 Select:
 File → Open 
-Protégé will automatically load the imports using the file: domain/airline-lel.owl.ttl
+Protégé cargará automáticamente las importaciones utilizando el archivo:
 
 ---
 
 ## Step 2
 
-After loading the ontology you should see:
+Después de cargar la ontología, deberían aparecer:
 
 ### Classes
 LELSymbol
@@ -99,55 +99,81 @@ text
 
 ## Step 3
 
-Check in Protegé in classes if you find airline domain classes like Aeronave, Pasajero etc.
-In case you cant find, check in Active Ontology you find the metamodel loaded, if not, load  /metamodel/lel-metamodel.ttl in direct imports.
-Once you load it, you have all ABox in Protegé.
+En Protégé, revisar en la sección **Classes** si aparecen clases del dominio de aerolínea como:
+- Aeronave  
+- Pasajero  
+- Vuelo 
+Si no aparecen:
+Si no aparecen:
 
-## Step 4
+1. Verificar en **Active Ontology** si el metamodelo está cargado.
+2. Si no está, cargar manualmente: /metamodel/lel-metamodel.ttl
 
-Load the individuals /individuals/airline-lel-individuals.ttl in direct imports, and check in Individuals tab if a list of LEL elements is shown.
-Case you can see anything, try to reload in File/Reload.
+en **Direct Imports**.
+
+Una vez cargado, todos los elementos de la **ABox** estarán disponibles en Protégé.
 
 ---
 
-# Ontology Layers
+## Step 4
 
-The ontology is structured in three layers.
+Cargar los individuos:
+/individuals/airline-lel-individuals.ttl 
 
-### 1. LEL Metamodel
 
-Defines the conceptual structure of the LEL:
+en **Direct Imports**.
 
-- symbols
-- notions
-- impacts
-- symbol types
+Luego verificar en la pestaña **Individuals** si aparece una lista de elementos del LEL.
 
-File:
+Si no aparece nada, intentar recargar la ontología:
+File → Reload
+
+---
+
+# Capas de la Ontología
+
+La ontología está estructurada en tres capas.
+
+---
+
+## 1. Metamodelo del LEL
+
+Define la estructura conceptual del LEL:
+
+- símbolos  
+- nociones  
+- impactos  
+- tipos de símbolos  
+
+Archivo:
 metamodel/lel-metamodel.ttl
 
 
 ---
 
-### 2. Domain Ontology
-
-Specializes the metamodel for the **airline domain**.
-
-Examples of LEL symbols:
-
-- Passenger
-- Flight
-- Reservation
-- Boarding
-- Ticket
 
 ---
 
-### 3. Individuals
+## 2. Ontología de Dominio
 
-Each LEL symbol is represented by three main individuals:
+Especializa el metamodelo para el **dominio de aerolínea**.
 
-Example:
+Ejemplos de símbolos del LEL:
+
+- Passenger  
+- Flight  
+- Reservation  
+- Boarding  
+- Ticket  
+
+---
+
+## 3. Individuos
+
+Cada símbolo del LEL está representado por tres individuos principales.
+
+Ejemplo:
+
 Vuelo_LEL
 Vuelo_Notion
 Vuelo_Impact
@@ -159,38 +185,38 @@ hasNotion → Vuelo_Notion
 hasImpact → Vuelo_Impact
 hasType → objectType
 
-Text descriptions are stored using:
+Las descripciones textuales se almacenan utilizando propiedades de datos.
 
 ---
 
-# Ontology Documentation
+# Documentación de la Ontología
 
-The folder:
+La carpeta:
 
-contains HTML documentation automatically generated from the ontology.
+contiene documentación HTML generada automáticamente a partir de la ontología.
 
-Open:
+
+Abrir:
 owl/index.html 
 
-
-to explore:
+para explorar:
 
 - classes
 - properties
 - individuals
 - relationships
 
-in a browser.
+en un navegador.
 
 ---
 
-# Example SPARQL Query
+# Ejemplo SPARQL Query
 
-In Protégé open:
+En el Protégé abra:
 SPARQL Query tab
 
 
-Run:
+Pege y execute:
 
 ```sparql
 PREFIX lel: <http://ontologies.mgis.unlp.org/lel-metamodel#>
@@ -214,21 +240,21 @@ lel:hasImpact ?impact .
 ORDER BY ?type ?symbol
 ```` 
 
-Research Context
+Contexto de Investigación
 
-This ontology is part of research on:
+Esta ontología forma parte de una investigación sobre:
 
-Semantic enrichment of the Extended Language Lexicon (LEL) using Description Logics
+Enriquecimiento semántico del Léxico Extendido del Lenguaje (LEL) mediante Lógicas de Descripción.
 
-The objective is to support:
+El objetivo es apoyar:
 
-validation of domain vocabulary
+validación del vocabulario del dominio
 
-detection of semantic inconsistencies
+detección de inconsistencias semánticas
 
-ontology-based support for requirements engineering.
+soporte basado en ontologías para la ingeniería de requisitos.
 
-Author
+Autor
 
 Marc Marinho de Alcântara
 Universidad Nacional de La Plata (UNLP)
